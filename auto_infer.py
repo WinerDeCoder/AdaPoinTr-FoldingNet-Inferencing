@@ -15,7 +15,7 @@ for i in range(len(num_loop)):  # Adjust the range as needed
     # Replace "your_command" with the actual command
     command = f"python tools/inference.py cfgs/ShapeNet55_models/AdaPoinTr.yaml \
         experiments_ada_general/final/AdaPoinTr/ShapeNet55_models/example/ckpt-best.pth --pc_root {num_loop[i]} \
-                --save_vis_img  --out_pc_root AdaPoinTr-FoldingNet-Inferencing/ada_general/final/{num_loop[i]}"
+                --save_vis_img  --out_pc_root ada_general/final/{num_loop[i]}"
     print(command)
     os.system(command)
     

@@ -8,12 +8,20 @@ import random
 import torch.nn.functional as F
 
 
+
+
+location_folding = glob('folding_images/z_aware/coarse_intense/demo/storage/room_*/partial/medium/*/*/fine.npy')
+
 location = glob('z_aware/coarse_intense/demo/storage/room_*/partial/medium/*/*/fine.npy')
+
+print(location_folding, location)
 
 location_partial = glob('demo/storage/room_*/partial/medium/*/*.npy')
 
 location_full = glob('demo/storage/room_*/full/*.npy')
 
+
+location_folding = sorted(location_folding)
 location = sorted(location)
 location_partial = sorted(location_partial)
 location_full = sorted(location_full)
@@ -27,6 +35,7 @@ for i in range(0, len(location), 15):
     complete_dict = {}
     partial_part = location_partial[i:i+15]
     location_part = location[i:i+15]
+    location_folding_part = location_folding[i:i+15]
 
     print(location_part[0][41:])
         
@@ -34,6 +43,8 @@ for i in range(0, len(location), 15):
         objecter = np.load(location_part[i])
         #location_part[i] = location_part[i].split("/")
         #complete_dict[f"{location_part[i][-2]}"] = objecter
+        
+        objecter_folding = np.load(location_folding_part[i])
 
         object_partial = np.load(partial_part[i])
         #partial_part[i] = partial_part[i].split("/")
@@ -45,11 +56,14 @@ for i in range(0, len(location), 15):
 
 
         objecter = torch.tensor(objecter) 
-        object_partial = torch.tensor(object_partial) +torch.tensor([1.2,0,0]) 
-        object_full = torch.tensor(object_full) +torch.tensor([2.4,0,0]) 
+        objecter_folding = torch.tensor(objecter_folding) +torch.tensor([1.2,0,0]) 
+        object_partial = torch.tensor(object_partial) +torch.tensor([2.4,0,0]) 
+        object_full = torch.tensor(object_full) +torch.tensor([3.6,0,0]) 
 
-        combine = torch.cat((objecter, object_partial, object_full))
-        color = torch.tensor([1,2,3])
+        combine = torch.cat((objecter, objecter_folding, object_partial, object_full))
+        color = torch.tensor([1,2,3,4])
+        
+        print("why", combine)
 
         GeometricTools.drawPointCloudsColorsClasses( combine,  color [[0,0,0]])
 
