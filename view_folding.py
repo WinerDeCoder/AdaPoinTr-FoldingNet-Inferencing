@@ -81,7 +81,7 @@ for i in range(0, len(location), 15):
 
     # GeometricTools.drawPointCloudsColorsClasses( torch.cat((torch.tensor(totaler), torch.tensor(totaler_complete))),  torch.cat((color, color_complete)), [[0,0,0]])
 
-
+    #plj-y57NugfA7yh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
 
     partial_dict = {}
     complete_dict = {}
