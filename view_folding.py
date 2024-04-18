@@ -14,7 +14,7 @@ location_folding = glob('folding_images/z_aware/coarse_intense/demo/storage/room
 
 location = glob('z_aware/coarse_intense/demo/storage/room_*/partial/medium/*/*/fine.npy')
 
-print(location_folding, location)
+#print(location_folding, location)
 
 location_partial = glob('demo/storage/room_*/partial/medium/*/*.npy')
 
@@ -63,7 +63,7 @@ for i in range(0, len(location), 15):
         combine = torch.cat((objecter, objecter_folding, object_partial, object_full))
         color = torch.tensor([1,2,3,4])
         
-        print("why", combine)
+        #print("why", combine)
 
         GeometricTools.drawPointCloudsColorsClasses( combine,  color [[0,0,0]])
 
