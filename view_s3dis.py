@@ -8,7 +8,7 @@ import random
 import torch.nn.functional as F
 
 
-location = glob('inference_result/*/fine.npy')
+location = glob('s3dis/*/fine.npy')
 
 
 location_full = glob('demo/s3dis_npy/*.npy')
