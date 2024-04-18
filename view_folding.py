@@ -45,6 +45,7 @@ for i in range(0, len(location), 15):
         #complete_dict[f"{location_part[i][-2]}"] = objecter
         
         objecter_folding = np.load(location_folding_part[i])
+        
 
         object_partial = np.load(partial_part[i])
         #partial_part[i] = partial_part[i].split("/")
