@@ -26,7 +26,7 @@ for i in range(len(location)):
     partial = np.load(location[i])
     full = np.load(location_full[i])
     
-    GeometricTools.drawPointCloudsColorsClasses( torch.cat((torch.tensor(full) - torch.tensor([2.2,0,0]), torch.tensor(partial), torch.tensor(full) + torch.tensor([2.2,0,0]))), torch.tensor([1,2]), [[0,0,0]])
+    GeometricTools.drawPointCloudsColorsClasses( torch.cat((torch.tensor(folding) - torch.tensor([2.2,0,0]), torch.tensor(partial), torch.tensor(full) + torch.tensor([2.2,0,0]))), torch.tensor([1,2]), [[0,0,0]])
     
     
     
