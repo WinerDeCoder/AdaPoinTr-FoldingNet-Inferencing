@@ -57,8 +57,8 @@ for i in range(0, len(location), 15):
 
         objecter = torch.tensor(objecter) 
         objecter_folding = torch.tensor(objecter_folding) +torch.tensor([-1.2,0,0]) 
-        object_partial = torch.tensor(object_partial) +torch.tensor([2.4,0,0]) 
-        object_full = torch.tensor(object_full) +torch.tensor([3.6,0,0]) 
+        object_partial = torch.tensor(object_partial) +torch.tensor([1.2,0,0]) 
+        object_full = torch.tensor(object_full) +torch.tensor([2.4,0,0]) 
 
         combine = torch.cat((objecter, objecter_folding, object_partial, object_full))
         color = torch.tensor([1,2,3,4])
