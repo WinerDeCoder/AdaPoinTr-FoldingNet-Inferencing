@@ -10,7 +10,7 @@ import torch.nn.functional as F
 
 location = glob('s3dis/*/fine.npy')
 
-location_folding = glob('s3dis_dbscan/*/fine.npy')
+location_folding = glob('s3dis_dbscan/s3dis/*/fine.npy')
 
 
 location_full = glob('demo/s3dis_npy/*.npy')
