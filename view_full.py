@@ -17,7 +17,7 @@ location_full = glob('demo/storage/room_*/full/*.npy')
 location = sorted(location)
 location_partial = sorted(location_partial)
 location_full = sorted(location_full)
-
+#print(location_full)
 
 for i in range(0, len(location), 15):
     partial_dict = {}
@@ -65,9 +65,9 @@ for i in range(0, len(location), 15):
 
     color_full = torch.cat(tuple(colour_full), dim = 0)
     
-    GeometricTools.drawPointCloudsColorsClasses(  torch.tensor(totaler_full),  color_full, [[0,0,0]])
+    #GeometricTools.drawPointCloudsColorsClasses(  torch.tensor(totaler_full),  color_full, [[0,0,0]])
 
-    #GeometricTools.drawPointCloudsColorsClasses( torch.cat((torch.tensor(totaler), torch.tensor(totaler_complete), torch.tensor(totaler_full))),  torch.cat((color, color_complete, color_full)), [[0,0,0]])
+    GeometricTools.drawPointCloudsColorsClasses( torch.cat((torch.tensor(totaler), torch.tensor(totaler_complete), torch.tensor(totaler_full))),  torch.cat((color, color_complete, color_full)), [[0,0,0]])
 
 
 
