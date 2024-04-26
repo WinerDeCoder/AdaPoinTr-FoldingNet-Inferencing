@@ -8,7 +8,7 @@ import random
 import torch.nn.functional as F
 
 
-location = glob('z_aware/coarse_intense/demo/storage/room_*/partial/medium/*/*/fine.npy')
+location = glob('PointAttn/shapenet/demo/storage/room_*/partial/medium/*/*/fine.npy')
 
 location_partial = glob('demo/storage/room_*/partial/medium/*/*.npy')
 
