@@ -8,10 +8,10 @@ import random
 import torch.nn.functional as F
 
 
-location = glob('inference_z_aware/Info/demo/storage/room_*/partial/medium/*/*/fine.npy')
+location = glob('denoise/radius/PointAttn/*/demo/storage/room_*/partial/easy/*/*/fine.npy')
 
 location_partial = glob('demo/storage/room_*/partial/medium/*/*.npy')
-#print(location)
+print(location)
 location_full = glob('demo/storage/room_*/full/*.npy')
 
 location = sorted(location)
@@ -31,8 +31,9 @@ for i in range(0, len(location), 15):
     for i in range(len(location_part)):
 
         objecter = np.load(location_part[i])
+        print(location_part[i])
         location_part[i] = location_part[i].split("/")
-        complete_dict[f"{location_part[i][-2]}"] = objecter
+        complete_dict[f"{location_part[i][-1]}"] = objecter
 
         object_partial = np.load(partial_part[i])
         partial_part[i] = partial_part[i].split("/")
@@ -43,29 +44,33 @@ for i in range(0, len(location), 15):
         full_dict[f"{full_part[i%16][-1]}"] = object_full
         
         
+    print(len(complete_dict))
 
-
-    totaler = np.concatenate(tuple(partial_dict.values()), axis = 0) + np.array([1,0,0])* 7
+    totaler = np.concatenate(tuple(partial_dict.values()), axis = 0) + np.array([1,0,0])* 0.5
         
     colour = [torch.ones(torch.tensor(partial_dict[f"{list(partial_dict.keys())[x]}"]).shape[0]).int()*(x) for x in range(len(partial_dict.keys()))]
 
     color = torch.cat(tuple(colour), dim = 0)
 
 
-    totaler_complete = np.concatenate(tuple(complete_dict.values()), axis = 0) 
+    totaler_complete = np.concatenate(tuple(complete_dict.values()), axis = 0) + np.array([1,0,0])* 0.5
+    
+    mask = totaler_complete[:,2] > 0
+    
+    totaler_complete = totaler_complete[mask]
         
     colour_complete = [torch.ones(torch.tensor(complete_dict[f"{list(complete_dict.keys())[x]}"]).shape[0]).int()*(x) for x in range(len(complete_dict.keys()))]
 
     color_complete = torch.cat(tuple(colour_complete), dim = 0)
 
 
-    totaler_full = np.concatenate(tuple(full_dict.values()), axis = 0) + np.array([1,0,0])* 14
+    totaler_full = np.concatenate(tuple(full_dict.values()), axis = 0) + np.array([1,0,0])* 0.5#   +np.array([1,0,0])* 14
         
     colour_full = [torch.ones(torch.tensor(full_dict[f"{list(full_dict.keys())[x]}"]).shape[0]).int()*(x) for x in range(len(full_dict.keys()))]
 
     color_full = torch.cat(tuple(colour_full), dim = 0)
     
-    GeometricTools.drawPointCloudsColorsClasses(  torch.tensor(totaler_full),  color_full, [[0,0,0]])
+    GeometricTools.drawPointCloudsColorsClasses(  torch.tensor(totaler),  color_full, [[0,0,0]])
 
     #GeometricTools.drawPointCloudsColorsClasses( torch.cat((torch.tensor(totaler), torch.tensor(totaler_complete), torch.tensor(totaler_full))),  torch.cat((color, color_complete, color_full)), [[0,0,0]])
 
