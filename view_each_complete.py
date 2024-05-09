@@ -8,10 +8,10 @@ import random
 import torch.nn.functional as F
 
 
-location = glob('denoise/statistic/z_aware/coarse_intense/demo/storage/room_0/partial/medium/*/*/fine.npy')
+location = glob('denoise/statistic/ada_general/*/demo/storage/room_*/partial/medium/corner_1/*/fine.npy')
 
 
-location_partial = glob('demo/storage/room_*/partial/medium/*/*.npy')
+location_partial = glob('demo/storage/room_*/partial/medium/corner_1/*.npy')
 
 location_full = glob('demo/storage/room_*/full/*.npy')
 
