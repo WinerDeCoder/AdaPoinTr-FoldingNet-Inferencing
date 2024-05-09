@@ -8,27 +8,27 @@ import random
 import torch.nn.functional as F
 
 
-#location = glob('thesis_infer/21/easy/*/fine.npy')
+location = glob('thesis_infer/55/easy/*/fine.npy')
 
-#location_partial = glob('inferencing/21/easy/*.npy')
+location_partial = glob('inferencing/55/easy/*.npy')
 
-#location_full = glob('inferencing/21/easy/*.npy')
+location_full = glob('inferencing/55/full/*.npy')
 
-location = glob('thesis_infer/PCN/*/fine.npy')
+# location = glob('thesis_infer/PCN/*/fine.npy')
 
-location_partial = glob('inferencing/PCN_par/partial/*.pcd')
+# location_partial = glob('inferencing/PCN_par/partial/*.pcd')
 
-location_full = glob('inferencing/PCN_par/full/*.pcd')
+# location_full = glob('inferencing/PCN_par/full/*.pcd')
 
-location = sorted(location)
-location_partial = sorted(location_partial)
-location_full = sorted(location_full)
+#location = sorted(location)
+#location_partial = sorted(location_partial)
+#location_full = sorted(location_full)
 
 # print(len(location_full), len(location), len(location_partial))
 # exit()
 
 
-for i in range(0, len(location), 7):
+for i in range(0, len(location), 9):
     partial_dict = {}
     complete_dict = {}
     partial_part = location_partial[i:i+15]
